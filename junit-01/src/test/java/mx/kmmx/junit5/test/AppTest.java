@@ -26,7 +26,7 @@ class AppTest {
     }
 
     @Test
-    @Disabled("no lo he terminado porque faltan insumos")
+    @Disabled("test productivo PELIGRO!!!")
     @DisplayName("Yo soy el test que falla")
     void otroVerdadero2(){
         assertTrue(false);

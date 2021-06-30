@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import mx.kmmx.junit5.Math;
@@ -12,6 +13,7 @@ import mx.kmmx.junit5.Math;
 public class MathTest {
 
   @Test
+  @Tag("sum")
   @DisplayName("La suma de dos numeros enteros")
   void sumaDeEnteros() {
     final Math math = new Math();
@@ -24,6 +26,7 @@ public class MathTest {
   }
 
   @Test
+  @Tag("div")
   @DisplayName("otro caso de prueba")
   void divideTest2() {
     final Math math = new Math();
@@ -44,6 +47,18 @@ public class MathTest {
     assertThrows(ArithmeticException.class, () -> {
       final Double result = math.divide(a, b);
     });
+  }
+
+  @Test
+  @DisplayName("otro caso de prueba ...")
+  void divideTest3() {
+    final Math math = new Math();
+    final Double a = 3.0;
+    final Double b = -5.0;
+    final Double expected = 0.0;
+    final Double result = math.divide(a, b);
+
+    assertTrue(result > 0);
 
   }
 

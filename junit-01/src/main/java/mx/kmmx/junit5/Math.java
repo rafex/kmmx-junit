@@ -3,7 +3,6 @@ package mx.kmmx.junit5;
 public class Math {
 
     public Integer sum(Integer a, Integer b){
-        
         return a+b;
     }
 
