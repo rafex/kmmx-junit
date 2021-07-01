@@ -1,15 +1,20 @@
 package mx.kmmx.junit02.contact.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Contact {
+
+    public static final String CONSTANTE = "soy una constante";
 
     private String firstName;
     private String lastName;
     private String phoneNumber;
 
     public Contact(String firstName, String lastName, String phoneNumber) {
-        this.firstName = validFistName(firstName);
+        System.out.println(CONSTANTE);
+        this.firstName = validFirstName(firstName);
         this.lastName = validLastName(lastName);
         this.phoneNumber = phoneNumber;
     }
@@ -19,7 +24,7 @@ public class Contact {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = validFistName(firstName);
+        this.firstName = validFirstName(firstName);
     }
 
     public String getLastName() {
@@ -38,20 +43,6 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    private String validFistName(String firstName){
-        if(firstName == null && firstName.isBlank()){
-            throw new RuntimeException("First Name Cannot be null");
-        }
-        return firstName;
-    }
-
-    private String validLastName(String lastName){
-        if(lastName == null && lastName.isBlank()){
-            throw new RuntimeException("Last Name Cannot be null");
-        }
-        return lastName;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,5 +54,38 @@ public class Contact {
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName, phoneNumber);
+    }
+
+    private String validFirstName(String firstName){
+        if(firstName == null || firstName.isBlank()){
+            throw new RuntimeException("First Name Cannot be null");
+        }
+
+        try {
+            if (Integer.valueOf(firstName) instanceof Integer) {
+                throw new IllegalArgumentException("First Name Cannot be numbers");
+            }
+        } catch (NumberFormatException e){
+
+        }
+
+        String regex = "^[a-zA-Z0-9]*$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(firstName);
+
+        if(matcher.matches()){
+            throw new IllegalArgumentException("First Name Cannot be alphanumeric");
+        }
+
+        return firstName;
+    }
+
+    private String validLastName(String lastName){
+        if(lastName == null || lastName.isBlank()){
+            throw new IllegalArgumentException("Last Name Cannot be null");
+        }
+        return lastName;
     }
 }
