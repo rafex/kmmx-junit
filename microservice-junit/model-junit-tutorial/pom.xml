@@ -28,6 +28,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>dev.rafex.ether.json</groupId>
+			<artifactId>ether-json</artifactId>
+			<version>2.0-v20210511</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>

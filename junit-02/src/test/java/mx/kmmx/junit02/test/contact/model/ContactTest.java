@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.logging.Logger;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ContactTest {
 
     static Contact contact;
@@ -20,6 +21,7 @@ public class ContactTest {
 
     @Test
     @DisplayName("Happy path")
+    @Order(1)
     void happyPath(){
         System.setProperty("ENV", "PROD");
 
@@ -31,6 +33,7 @@ public class ContactTest {
     @Test
     @DisplayName("Valid firstName")
     //@RepeatedTest(5)
+    @Order(3)
     void validFirstName(){
         Assertions.assertThrows(RuntimeException.class, () ->{
             contact = new Contact("","Gonzalez","5580080808");
@@ -39,6 +42,7 @@ public class ContactTest {
 
     @Test
     @DisplayName("Valid numbers in firstName")
+    @Order(2)
     void numbersFirstName(){
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             contact = new Contact("5555465", "", "");

@@ -3,13 +3,21 @@ package mx.rafex.tutorial.junit.model.person;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.google.gson.annotations.Expose;
+
 public class Person implements Serializable {
   
   private static final long serialVersionUID = 3489343293075839844L;
 
   private Integer id;
+  
+  @Expose
   private String firstName;
+  
+  @Expose
   private String lastName;
+  
+  @Expose
   private Integer age;
 
   public Person() {

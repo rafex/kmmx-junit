@@ -61,15 +61,8 @@ public class Contact {
             throw new RuntimeException("First Name Cannot be null");
         }
 
-        try {
-            if (Integer.valueOf(firstName) instanceof Integer) {
-                throw new IllegalArgumentException("First Name Cannot be numbers");
-            }
-        } catch (NumberFormatException e){
-
-        }
-
-        String regex = "^[a-zA-Z0-9]*$";
+        // r4ul <--
+        String regex = "^[0-9]*$";
 
         Pattern pattern = Pattern.compile(regex);
 
